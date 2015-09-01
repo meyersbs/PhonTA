@@ -10,11 +10,12 @@ Coming Soon!
 
 ## Usage
 ```bash
-    pyphont [input language] [input file] [output file]
+    pyphont <option> [required] <option> <option>
+    pyphont <input language> [input file] <output language> <output file>
     
-    pyphont -eng input.txt output.txt   # American English Input --> output.txt
-    pyphont -spa input.txt              # No output file --> Stdout
-    pyphont input.txt                   # No input language --> American English
+    pyphont -eng input.txt -ipa output.txt  # American English Input --> IPA Output
+    pyphont -spa input.txt -arp             # Spanish Input --> Arpabet Stdout
+    pyphont input.txt                       # American English (default) Input --> IPA (default) Stdout
 ```
 
 ## Acknowledgments
