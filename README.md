@@ -5,6 +5,8 @@
 ## Project Description
 PyPhonT<sup>2</sup> is a command line tool for translating words and groups of words into their [Iternational Phonetic Alphabet (IPA)](https://en.wikipedia.org/wiki/International_Phonetic_Alphabet) transcriptions, and (<i>hopefully</i>) vice versa.
 
+This is NOT meant to translate from one language to another; I will not be including the functionality to translate between English and Spanish, for example. Translations will be from and to IPA or from and to Arpabet.
+
 ## Installation
 Coming Soon!
 
