@@ -12,12 +12,13 @@ Coming Soon!
 
 ## Usage
 ```bash
-    pyphont <option> [required] <option> <option>
     pyphont <input language> [input file] <output language> <output file>
     
-    pyphont -eng input.txt -ipa output.txt  # American English Input --> IPA Output
-    pyphont -spa input.txt -arp             # Spanish Input --> Arpabet Stdout
-    pyphont input.txt                       # American English (default) Input --> IPA (default) Stdout
+    $ pyphont -eng input.txt -ipa output.txt    # -eng Input --> -ipa Output
+    $ pyphont -spa input.txt -arp               # -spa Input --> -arp Stdout
+    $ pyphont input.txt                         # -eng (default) Input --> -ipa (default) Stdout
+    
+    $ pyphont --help
 ```
 
 ## Acknowledgments
