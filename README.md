@@ -9,7 +9,13 @@ PyPhonT<sup>2</sup> is a command line tool for translating words and groups of w
 Coming Soon!
 
 ## Usage
-Coming Soon!
+```bash
+    pyphont [input language] [input file] [output file]
+    
+    pyphont -eng input.txt output.txt   # American English Input --> output.txt
+    pyphont -spa input.txt              # No output file --> Stdout
+    pyphont input.txt                   # No input language --> American English
+```
 
 ## Acknowledgments
 Coming Soon!
