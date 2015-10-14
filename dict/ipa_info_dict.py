@@ -14,6 +14,14 @@ ipa = {
 110:    ["U+0261",          "&#609;",           "voiced",       "velar",                    "plosive,stop"], # g
 111:    ["U+0071",          "&#113;",           "voiceless",    "uvular",                   "plosive,stop"], # q
 112:    ["U+0262",          "&#610;",           "voiced",       "uvular",                   "plosive,stop"], # G
-113:    ["U+0294",          "&#660;",           "N/A",          "glottal",                  "plosive,stop"],
+113:    ["U+0294",          "&#660;",           "voiceless",    "glottal",                  "plosive,stop"],
+114:    ["U+006D",          "&#109;",           "voiced",       "bilabial",                 "nasal"       ], # m
+115:    ["U+0271",          "&#625;",           "voiced",       "labiodental",              "nasal"       ],
+116:    ["U+006E",          "&#110;",           "voiced",       "alveolar",                 "nasal"       ], # n
+116407: ["U+006E U+033C",   "&#110;&#828;",     "voiced",       "linguolabial",             "nasal"       ],
+117:    ["U+0273",          "&#627;",           "voiced",       "retroflex",                "nasal"       ],
+118:    ["U+0272",          "&#626;",           "voiced",       "palatal",                  "nasal"       ],
+119:    ["U+014B",          "&#331;",           "voiced",       "velar",                    "nasal"       ],
+120:    ["U+0274",          "&#628;",           "voiced",       "uvular",                   "nasal"       ], # N
 173:    ["U+02A1",          "&#673;",           "N/A",          "epiglottal,pharyngeal",    "plosive,stop"]
 }
