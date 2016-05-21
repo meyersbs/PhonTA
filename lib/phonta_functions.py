@@ -21,6 +21,7 @@ def sort_dict(dictionary):
 		return False
 
 def update_dict(dictionary):
+	sort_dict(dictionary)
 	return False
 
 def translate(text):
