@@ -1,38 +1,30 @@
-# PyPhonT<sup>2</sup>
+# PhonTA
 
-## Python Phonetics Transcription Tool
+## Phonetic Transcription Assistant
 
 ## Project Description
-PyPhonT<sup>2</sup> is a command line tool for translating words and groups of words into their [Iternational Phonetic Alphabet (IPA)](https://en.wikipedia.org/wiki/International_Phonetic_Alphabet) transcriptions, and (<i>hopefully</i>) vice versa.
+PhonTA is a command line tool for translating words and groups of words into their [Iternational Phonetic Alphabet (IPA)](https://en.wikipedia.org/wiki/International_Phonetic_Alphabet) transcriptions, and (<i>hopefully</i>) vice versa.
 
-This is NOT meant to translate from one language to another; I will not be including the functionality to translate between English and Spanish, for example. Translations will be from and to IPA or from and to Arpabet.
+This is NOT meant to translate from one language to another; I will not be including the functionality to translate between English and Spanish, for example. Translations will be from the base language (English, Spanish, etc.) to either IPA or Arpabet, and vice versa.
 
 ## Installation
 Coming Soon!
 
 ## Usage
-```bash
-    pyphont <input language> [input file] <output language> <output file>
-    
-    $ pyphont -eng input.txt -ipa output.txt    # -eng Input --> -ipa Output
-    $ pyphont -spa input.txt -arp               # -spa Input --> -arp Stdout
-    $ pyphont input.txt                         # -eng (default) Input --> -ipa (default) Stdout
-    
-    $ pyphont --help
-```
+Coming Soon!
 
 ## Acknowledgments
 Coming Soon!
 
 ## Contact
 
-Benjamin S. Meyers < <lion.logic.org@gmail.com> >
+Benjamin S. Meyers < <ben@lionlogic.org> >
 
 ## Licensing
 
 The MIT License (MIT)
 
-Copyright (c) 2015 Benjamin Meyers < <lion.logic.org@gmail.com> >
+Copyright (c) 2016 Benjamin Meyers < <ben@lionlogic.org> >
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
