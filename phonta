@@ -1,1 +1,15 @@
 #!/usr/bin/python
+
+################################################################################
+
+################################################################################
+
+import os, subprocess, sys
+from lib.phonta_functions import sort_dict
+
+def main():
+	args = sys.argv
+	sort_dict(args[1])
+
+if __name__ == "__main__":
+	main()
