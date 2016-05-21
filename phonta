@@ -1,15 +1,65 @@
 #!/usr/bin/python
 
-################################################################################
+#################################################################################
+# @PROJECT: PhonTA - Phonetic Transcription Assistant                           #
+# @VERSION:                                                                     #
+# @AUTHOR: Benjamin Meyers                                                      #
+# @EMAIL: ben@lionlogic.org                                                     #
+# @LICENSE: MIT                                                                 #
+#################################################################################
 
-################################################################################
+##### IMPORTS ###################################################################
+import sys
+from lib.phonta_functions import sort_dict, update_dict, translate
 
-import os, subprocess, sys
-from lib.phonta_functions import sort_dict
+##### GLOBALS ###################################################################
+commands = {"sort":sort_dict,	"update":update_dict,	"translate":translate}
+
+def display_help_message():
+	print("USAGE: phonta <command> <options>")
+	print("\t--help,  -h\tDisplay this message.")
+	print("\t--info,  -i\tDiplay program information.")
+	print("\t--usage, -u\tDisplay usage instructions.")
+
+def display_info_message():
+	print("\n")
+	print("#################################################")
+	print("# PhonTA - Phonetic Transcription Assistant\t#")
+	print("#\t\t\t\t\t\t#")
+	print("# Copyright (c) 2016,   Benjamin S. Meyers\t#")
+	print("# \t\t\tben@lionlogic.org\t#")
+	print("#################################################")
+	print("\n")
+
+def display_usage_message():
+	print("COMMAND\t\tARG\t\tDESCRIPTION")
+	print("update\t\tdict\t\tUpdate the IPA in the cmudict.")
+
+def run_command(args):
+	command = args[1]
+	if command not in commands.keys():
+		sys.exit("WARNING: Invalid command. Try '--help' for details.")
+	if len(args) == 2: # phonta <command>
+		print(commands[command]())
+	elif len(args) == 3: # phonta <command> <option>
+		try:
+			print(commands[command](int(args[2])))
+		except:
+			print("WARNING: Could not run " + str(command) + " with missing arguments.")
 
 def main():
 	args = sys.argv
-	sort_dict(args[1])
+	if len(args) < 2:
+		print("HELP")
+	elif len(args) == 2:
+		if args[1] == "--help" or args[1] == "-h":
+			display_help_message()
+		elif args[1] == "--info" or args[1] == "-i":
+			display_info_message()
+		elif args[1] == "--usage" or args[1] == "-u":
+			display_usage_message()
+	else:
+		run_command(args[:-1])
 
 if __name__ == "__main__":
 	main()

@@ -9,8 +9,8 @@
 # @LICENSE: MIT									#
 #################################################################################
 
+##### IMPORTS ###################################################################
 import os, subprocess
-from shutil import copyfile
 
 def sort_dict(dictionary):
 	""" Takes the given dictionary and sorts it alphabetically. """
@@ -20,3 +20,8 @@ def sort_dict(dictionary):
 	else:
 		return False
 
+def update_dict(dictionary):
+	return False
+
+def translate(text):
+	return False
