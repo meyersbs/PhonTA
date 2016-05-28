@@ -10,7 +10,7 @@
 #################################################################################
 
 ##### IMPORTS ###################################################################
-import os, subprocess
+import os, subprocess, re
 
 ##### VARIABLES #################################################################
 arpa_to_ipa = {	"AA":u'\u0251', "AA0":u'\u0251', "AA1":u'\u0251', "AA2":u'\u0251',
@@ -48,6 +48,20 @@ arpa_to_ipa = {	"AA":u'\u0251', "AA0":u'\u0251', "AA1":u'\u0251', "AA2":u'\u0251
 		"Y":u'\u0079',
 		"Z":u'\u007A',  "ZH":u'\u0292'}
 
+def format_cmudict(dictionary):
+	""" Takes the given cmudict file and reformats it to CSV. """
+	new_dict = open("dictionary.csv", "a")
+	if os.path.exists(dictionary):
+		with open(dictionary, "r") as f:
+			for line in f:
+				temp_line = re.split(r'\s\s', line)
+				new_dict.write(temp_line[0] + " , " + temp_line[1] + " ,\n")
+		new_dict.close()
+		subprocess.call(['cp', "dictionary.csv", dictionary], stdout=None)
+		subprocess.call(['rm', "dictionary.csv"], stdout=None)
+		return True
+	return False
+
 def sort_dict(dictionary):
 	""" Takes the given dictionary and sorts it alphabetically. """
 	if os.path.exists(dictionary):
@@ -57,7 +71,24 @@ def sort_dict(dictionary):
 		return False
 
 def update_dict(dictionary):
+	""" Converts the ARPABET given in the cmudict into IPA. """
+	format_dict(dictionary)
 	sort_dict(dictionary)
+	new_dict = open("dictionary.csv", "a")
+	if os.path.exists(dictionary):
+		with open(dictionary, "r") as f:
+			for line in f:
+				temp_line = ""
+				for item in line.split(" "):
+					if item not in arpa_to_ipa:
+						pass
+					else:
+						temp_line += arpa_to_ipa[item] + " "
+				new_dict.write(line.strip("\n") + temp_line.rstrip() + "\n")
+		new_dict.close()
+                subprocess.call(['cp', "dictionary.csv", dictionary], stdout=None)
+                subprocess.call(['rm', "dictionary.csv"], stdout=None)
+		return True
 	return False
 
 def translate(text):
