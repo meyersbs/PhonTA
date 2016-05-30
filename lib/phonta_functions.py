@@ -50,44 +50,50 @@ arpa_to_ipa = {	"AA":u'\u0251', "AA0":u'\u0251', "AA1":u'\u0251', "AA2":u'\u0251
 
 def format_cmudict(dictionary):
 	""" Takes the given cmudict file and reformats it to CSV. """
-	new_dict = open("dictionary.csv", "a")
+	new_dict = open("dictionary.psv", "a")
+	print("Formatting cmudict...")
 	if os.path.exists(dictionary):
 		with open(dictionary, "r") as f:
 			for line in f:
-				temp_line = re.split(r'\s\s', line)
-				new_dict.write(temp_line[0] + " , " + temp_line[1] + " ,\n")
+				if ";;;" not in line:
+					temp_line = re.split(r'\s\s', line)
+					new_dict.write(temp_line[0] + "|" + temp_line[1].strip("\n") + "\n")
 		new_dict.close()
-		subprocess.call(['cp', "dictionary.csv", dictionary], stdout=None)
-		subprocess.call(['rm', "dictionary.csv"], stdout=None)
+		subprocess.call(['cp', "dictionary.psv", dictionary], stdout=None)
+		subprocess.call(['rm', "dictionary.psv"], stdout=None)
 		return True
 	return False
 
-def sort_dict(dictionary):
+def sort_cmudict(dictionary):
 	""" Takes the given dictionary and sorts it alphabetically. """
+	print("Sorting cmudict...")
 	if os.path.exists(dictionary):
 		subprocess.call(['sort', '-V', dictionary, '-o', dictionary], stdout=None)
 		return True
 	else:
 		return False
 
-def update_dict(dictionary):
+def update_cmudict(dictionary):
 	""" Converts the ARPABET given in the cmudict into IPA. """
-	format_dict(dictionary)
-	sort_dict(dictionary)
-	new_dict = open("dictionary.csv", "a")
+	print("Updating cmudict...")
+	format_cmudict(dictionary)
+	sort_cmudict(dictionary)
+	new_dict = open("dictionary.psv", "wb")
 	if os.path.exists(dictionary):
 		with open(dictionary, "r") as f:
 			for line in f:
+				elems = line.split("|")
 				temp_line = ""
-				for item in line.split(" "):
+				for item in elems[1].split():
 					if item not in arpa_to_ipa:
+						print("UNKNOWN: " + item)
 						pass
 					else:
 						temp_line += arpa_to_ipa[item] + " "
-				new_dict.write(line.strip("\n") + temp_line.rstrip() + "\n")
+				new_dict.write(line.strip("\n") + "|" + temp_line.encode('utf8').rstrip() + "\n")
 		new_dict.close()
-                subprocess.call(['cp', "dictionary.csv", dictionary], stdout=None)
-                subprocess.call(['rm', "dictionary.csv"], stdout=None)
+                subprocess.call(['cp', "dictionary.psv", dictionary], stdout=None)
+                subprocess.call(['rm', "dictionary.psv"], stdout=None)
 		return True
 	return False
 

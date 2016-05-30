@@ -10,10 +10,10 @@
 
 ##### IMPORTS ###################################################################
 import sys
-from lib.phonta_functions import sort_dict, update_dict, translate
+from lib.phonta_functions import update_cmudict, translate
 
 ##### GLOBALS ###################################################################
-commands = {"sort":sort_dict,	"update":update_dict,	"translate":translate}
+commands = {"update":update_cmudict,	"translate":translate}
 
 def display_help_message():
 	print("USAGE: phonta <command> <options>")
@@ -33,22 +33,22 @@ def display_info_message():
 
 def display_usage_message():
 	print("COMMAND\t\tARG\t\tDESCRIPTION")
-	print("update\t\tdict\t\tUpdate the IPA in the cmudict.")
+	print("translate\ttext\t\tTranslate the text to ARPABET and IPA.")
+	print("update\t\tcmudict\t\tUpdate the IPA in the cmudict.")
 
 def run_command(args):
 	command = args[1]
+	print(args)
 	if command not in commands.keys():
 		sys.exit("WARNING: Invalid command. Try '--help' for details.")
-	if len(args) == 2: # phonta <command>
-		print(commands[command]())
 	elif len(args) == 3: # phonta <command> <option>
-		try:
-			print(commands[command](int(args[2])))
-		except:
-			print("WARNING: Could not run " + str(command) + " with missing arguments.")
+		print(commands[command](args[2]))
 
 def main():
 	args = sys.argv
+	if "python" in args:
+		args.remove("python")
+
 	if len(args) < 2:
 		print("HELP")
 	elif len(args) == 2:
@@ -59,7 +59,7 @@ def main():
 		elif args[1] == "--usage" or args[1] == "-u":
 			display_usage_message()
 	else:
-		run_command(args[:-1])
+		run_command(args)
 
 if __name__ == "__main__":
 	main()
