@@ -55,9 +55,13 @@ def format_cmudict(dictionary):
 	if os.path.exists(dictionary):
 		with open(dictionary, "r") as f:
 			for line in f:
-				if ";;;" not in line:
+				if ";;;" not in line and re.match(r'[A-Za-z\']', line[0]):
 					temp_line = re.split(r'\s\s', line)
 					new_dict.write(temp_line[0] + "|" + temp_line[1].strip("\n") + "\n")
+
+		# Add missing terms
+		new_dict.write("&|AE2 N D\n")
+		new_dict.write("@|AE2 T\n")
 		new_dict.close()
 		subprocess.call(['cp', "dictionary.psv", dictionary], stdout=None)
 		subprocess.call(['rm', "dictionary.psv"], stdout=None)
