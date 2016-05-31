@@ -10,10 +10,10 @@
 
 ##### IMPORTS ###################################################################
 import sys
-from lib.phonta_functions import update_cmudict, translate
+from dict.util import upgrade_cmudict, translate, add_to_cmudict
 
 ##### GLOBALS ###################################################################
-commands = {"update":update_cmudict,	"translate":translate}
+commands = {"upgrade":upgrade_cmudict,	"translate":translate,	"add":add_to_cmudict}
 
 def display_help_message():
 	print("USAGE: phonta <command> <options>")
@@ -34,30 +34,34 @@ def display_info_message():
 def display_usage_message():
 	print("COMMAND\t\tARG\t\tDESCRIPTION")
 	print("translate\ttext\t\tTranslate the text to ARPABET and IPA.")
-	print("update\t\tcmudict\t\tUpdate the IPA in the cmudict.")
+	print("upgrade\t\tcmudict\t\tUpgrade to the most recent cmudict.")
 
 def run_command(args):
 	command = args[1]
+	print(command)
 	print(args)
 	if command not in commands.keys():
 		sys.exit("WARNING: Invalid command. Try '--help' for details.")
-	elif len(args) == 3: # phonta <command> <option>
+	elif len(args) == 2:
+		print(commands[command]())
+	elif len(args) == 3: # phonta <command> <option(s)>
 		print(commands[command](args[2]))
 
 def main():
+	#TODO: Handle translation when term is not in the cmudict.
+	#TODO: Handle adding new terms to the cmudict.
 	args = sys.argv
 	if "python" in args:
 		args.remove("python")
 
 	if len(args) < 2:
-		print("HELP")
-	elif len(args) == 2:
-		if args[1] == "--help" or args[1] == "-h":
-			display_help_message()
-		elif args[1] == "--info" or args[1] == "-i":
-			display_info_message()
-		elif args[1] == "--usage" or args[1] == "-u":
-			display_usage_message()
+		display_help_message()
+	elif len(args) == 2 and args[1] == "--help":
+		display_help_message()
+	elif len(args) == 2 and args[1] == "--usage":
+		display_usage_message()
+	elif len(args) == 2 and args[1] == "--info":
+		display_info_message()
 	else:
 		run_command(args)
 
